@@ -1,4 +1,5 @@
 import sys
+import csv
 from pathlib import Path
 
 from matplotlib.backends.backend_qtagg import (
@@ -82,11 +83,33 @@ class IceCreamProfitWindow(QMainWindow):
 
     def _load_stylesheet(self) -> None:
         stylesheet_path = Path(__file__).with_name("ice_cream_profit.qss")
-        self.setStyleSheet(stylesheet_path.read_text(encoding="utf-8"))
+        self.setStyleSheet(stylesheet_path.read_text())
 
     def on_load_file_clicked(self) -> None:
-        # TODO: my code
-        pass
+
+        file_path, _ = QFileDialog.getOpenFileName(self, "Select Ice Cream excel", "", "CSV Files (*.csv)")
+        if not file_path:
+            return
+
+        self.selected_file = file_path
+        self.temperatures = []
+        self.profits = []
+
+        with open(self.selected_file, mode="r", newline="") as file:
+            reader = csv.reader(file)
+            next(reader,None)
+
+            for row in reader:
+                if not row:
+                    continue
+                temp = float(row[0])
+                prof = float(row[1])
+
+                self.temperatures.append(temp)
+                self.profits.append(prof)
+
+        self.plot_ice_cream_data()
+
 
     def plot_ice_cream_data(self) -> None:
         # TODO: my code
