@@ -132,7 +132,7 @@ class IceCreamProfitWindow(QMainWindow):
         self.axes.set_ylabel("Profits [NIS]")
         self.axes.grid(True, color = "#e7edf3", linewidth=0.8)
         self.axes.legend()
-        self.axes.text(0.05,0.82,equation,transform=self.axes.transAxes,fontsize=10)
+        self.axes.text(0.05,0.82,equation,transform=self.axes.transAxes,fontsize=15)
 
         self.axes.spines["top"].set_visible(False)
         self.axes.spines["right"].set_visible(False)
@@ -188,7 +188,7 @@ class IceCreamProfitWindow(QMainWindow):
         description.setWordWrap(True)
         text_layout.addWidget(description)
 
-        author = QLabel("Created by Alex Atlas")
+        author = QLabel("Student: Alex Atlas")
         author.setObjectName("aboutAuthor")
         text_layout.addWidget(author)
 
