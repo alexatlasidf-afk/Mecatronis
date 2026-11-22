@@ -1,4 +1,5 @@
 import sys
+import csv
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QUrl
@@ -30,11 +31,11 @@ class GradeAdjustmentWindow(QMainWindow):
 
         self.setWindowTitle("Grade Adjustment Tool")
         self.resize(800, 620)
-        self._create_widgets()
+        self.create_widgets()
         self._load_stylesheet()
         self.update_table_from_lists()
 
-    def _create_widgets(self) -> None:
+    def create_widgets(self) -> None:
         central_widget = QWidget(self)
         main_layout = QVBoxLayout(central_widget)
 
@@ -80,12 +81,34 @@ class GradeAdjustmentWindow(QMainWindow):
 
     def _load_stylesheet(self) -> None:
         stylesheet_path = Path(__file__).with_name("style.qss")
-        stylesheet = stylesheet_path.read_text(encoding="utf-8")
+        stylesheet = stylesheet_path.read_text()
         self.setStyleSheet(stylesheet)
 
     def on_load_file_clicked(self) -> None:
-        # TODO: my code
-        pass
+        file_path, _ = QFileDialog.getOpenFileName(self, "Select grades excel", "", "CSV Files (*.csv)")
+
+        if not file_path:
+            return
+        self.selected_file = file_path
+
+        self.student_ids = []
+        self.original_grades = []
+        self.corrected_grades = []
+
+        with open(self.selected_file, mode="r", newline="") as file:
+            reader = csv.reader(file)
+            next(reader,None)
+
+            for row in reader:
+                student_id = row[0]
+                grade = int(row[1])
+
+                self.student_ids.append(student_id)
+                self.original_grades.append(grade)
+                self.corrected_grades.append(grade)
+
+        self.update_table_from_lists()
+
 
     def on_bonus_changed(self) -> None:
         # TODO: my code
