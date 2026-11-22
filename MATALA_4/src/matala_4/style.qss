@@ -1,0 +1,74 @@
+QMainWindow {
+    background-color: #f3f6fb;
+}
+
+QWidget {
+    color: #233044;
+    font-family: "Segoe UI", "Arial", sans-serif;
+    font-size: 10pt;
+}
+
+QPushButton {
+    background-color: #2463a6;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    min-height: 34px;
+    padding: 0 16px;
+}
+
+QPushButton:hover {
+    background-color: #1c508a;
+}
+
+QPushButton:pressed {
+    background-color: #153d6b;
+}
+
+QSpinBox {
+    background-color: white;
+    border: 1px solid #c8d2df;
+    border-radius: 5px;
+    min-height: 30px;
+    padding: 0 8px;
+}
+
+QTableWidget {
+    background-color: white;
+    alternate-background-color: #f1f5fa;
+    border: 1px solid #d5deea;
+    border-radius: 7px;
+    gridline-color: #e2e8f0;
+    selection-background-color: #cfe2fa;
+    selection-color: #182b44;
+}
+
+QHeaderView::section {
+    background-color: #e6edf6;
+    border: none;
+    border-bottom: 1px solid #cbd6e3;
+    color: #233044;
+    font-weight: 600;
+    padding: 9px;
+}
+
+QScrollBar:vertical {
+    background: #edf1f6;
+    width: 12px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: #aab8ca;
+    border-radius: 5px;
+    min-height: 24px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #8799af;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+}
