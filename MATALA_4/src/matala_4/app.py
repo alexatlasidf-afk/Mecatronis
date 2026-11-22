@@ -46,7 +46,7 @@ class GradeAdjustmentWindow(QMainWindow):
 
         controls_layout.addWidget(QLabel("Bonus points:"))
         self.bonus_spin_box = QSpinBox()
-        self.bonus_spin_box.setRange(-100, 100)
+        self.bonus_spin_box.setRange(0, 100)
         self.bonus_spin_box.setKeyboardTracking(False)
         self.bonus_spin_box.editingFinished.connect(self.on_bonus_changed)
         controls_layout.addWidget(self.bonus_spin_box)
