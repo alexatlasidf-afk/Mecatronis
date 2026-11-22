@@ -72,3 +72,44 @@ QScrollBar::add-line:vertical,
 QScrollBar::sub-line:vertical {
     height: 0;
 }
+
+QDialog#aboutDialog {
+    background-color: #f3f6fb;
+}
+
+QLabel#aboutTitle {
+    color: #172b4d;
+    font-size: 19pt;
+    font-weight: 700;
+}
+
+QLabel#aboutSubtitle {
+    color: #58677a;
+    font-size: 11pt;
+}
+
+QLabel#aboutAuthor {
+    color: #26364a;
+    font-size: 11pt;
+    font-weight: 700;
+}
+
+QWidget#repositoryPanel {
+    background-color: white;
+    border: 1px solid #d5deea;
+    border-radius: 12px;
+}
+
+QLabel#repositoryLogo {
+    background-color: transparent;
+}
+
+QLabel#repositoryUrl {
+    color: #175a92;
+    font-size: 10pt;
+    font-weight: 600;
+}
+
+QPushButton#aboutClose {
+    min-width: 100px;
+}

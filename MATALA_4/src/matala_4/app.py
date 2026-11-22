@@ -3,7 +3,7 @@ import csv
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QUrl
-from PySide6.QtGui import QDesktopServices
+from PySide6.QtGui import QDesktopServices, QPixmap
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
@@ -144,26 +144,69 @@ class GradeAdjustmentWindow(QMainWindow):
     def on_about_clicked(self) -> None:
         about_dialog = QDialog(self)
         about_dialog.setWindowTitle("About Grade Adjustment Tool")
-        about_dialog.setMinimumWidth(400)
+        about_dialog.setObjectName("aboutDialog")
+        about_dialog.resize(620, 420)
+        about_dialog.setMinimumSize(580, 400)
 
         layout = QVBoxLayout(about_dialog)
-        layout.addWidget(QLabel("<h2>Grade Adjustment Tool</h2>"))
-        layout.addWidget(QLabel("A desktop application for grade adjustments."))
-        layout.addWidget(QLabel("Author: Alex Atlas"))
+        layout.setContentsMargins(32, 28, 32, 24)
+        layout.setSpacing(16)
 
-        repository_url = "[INSERT_YOUR_GITHUB_REPO_URL]"
+        title = QLabel("Grade Adjustment Tool")
+        title.setObjectName("aboutTitle")
+        layout.addWidget(title)
+
+        subtitle = QLabel("A desktop application for grade adjustments.")
+        subtitle.setObjectName("aboutSubtitle")
+        layout.addWidget(subtitle)
+
+        author = QLabel("Student: Alex Atlas")
+        author.setObjectName("aboutAuthor")
+        layout.addWidget(author)
+
+        repository_url = "https://github.com/alexatlasidf-afk/Mecatronis"
+        repository_panel = QWidget()
+        repository_panel.setObjectName("repositoryPanel")
+        repository_layout = QHBoxLayout(repository_panel)
+        repository_layout.setContentsMargins(18, 14, 18, 14)
+        repository_layout.setSpacing(18)
+
+        image_path = Path(__file__).resolve().parents[2] / "GitHub-Logo.png"
+        logo = QPixmap(str(image_path))
+        logo_label = QLabel()
+        logo_label.setObjectName("repositoryLogo")
+        logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        logo_label.setFixedSize(76, 76)
+        logo_label.setPixmap(
+            logo.scaled(
+                68,
+                68,
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation,
+            )
+        )
+        repository_layout.addWidget(logo_label)
+
         repository_link = QLabel(
             f'<a href="{repository_url}">{repository_url}</a>'
         )
+        repository_link.setObjectName("repositoryUrl")
         repository_link.setOpenExternalLinks(True)
         repository_link.setTextInteractionFlags(
             Qt.TextInteractionFlag.TextBrowserInteraction
         )
-        layout.addWidget(repository_link)
+        repository_link.setWordWrap(True)
+        repository_layout.addWidget(repository_link, 1)
+        layout.addWidget(repository_panel)
 
         close_button = QPushButton("Close")
+        close_button.setObjectName("aboutClose")
         close_button.clicked.connect(about_dialog.accept)
-        layout.addWidget(close_button)
+        close_layout = QHBoxLayout()
+        close_layout.addStretch()
+        close_layout.addWidget(close_button)
+        layout.addLayout(close_layout)
+
         about_dialog.exec()
 
     def update_table_from_lists(self) -> None:
