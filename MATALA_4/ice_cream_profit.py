@@ -1,5 +1,7 @@
 import sys
 import csv
+import numpy as np
+
 from pathlib import Path
 
 from matplotlib.backends.backend_qtagg import (
@@ -112,8 +114,31 @@ class IceCreamProfitWindow(QMainWindow):
 
 
     def plot_ice_cream_data(self) -> None:
-        # TODO: my code
-        pass
+        if not self.temperatures or not self.profits:
+            return
+
+        self.axes.clear()
+        self.axes.scatter(self.temperatures,self.profits, s=1,color="#e36f16", label="data")
+
+        slope, intercept = np.polyfit(self.temperatures, self.profits, 1)
+        sign = "+" if intercept >= 0 else "-"
+        equation = f"y = {slope:.2f}x {sign}{abs(intercept):.2f}"
+        x_vals = np.array(self.temperatures)
+        y_vals = slope * x_vals + intercept
+        self.axes.plot(x_vals,y_vals,label = "Trendline")
+
+        self.axes.set_title("Ice cream Profits")
+        self.axes.set_xlabel("Temperature [Celsius]")
+        self.axes.set_ylabel("Profits [NIS]")
+        self.axes.grid(True, color = "#e7edf3", linewidth=0.8)
+        self.axes.legend()
+        self.axes.text(0.05,0.82,equation,transform=self.axes.transAxes,fontsize=10)
+
+        self.axes.spines["top"].set_visible(False)
+        self.axes.spines["right"].set_visible(False)
+
+        self.canvas.draw_idle()
+
 
     def _draw_placeholder_plot(self) -> None:
         self.axes.clear()
