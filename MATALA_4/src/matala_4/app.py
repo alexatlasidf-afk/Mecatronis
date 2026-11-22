@@ -127,8 +127,19 @@ class GradeAdjustmentWindow(QMainWindow):
 
         
     def on_update_file_clicked(self) -> None:
-        # TODO: my code
-        pass
+
+        if not self.selected_file:
+            return
+
+        with open(self.selected_file, mode="w", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(["ID","Grade"])
+
+            for student_id, corrected_grade in zip(self.student_ids, self.corrected_grades):
+                writer.writerow([student_id, corrected_grade])
+
+        open_file_cross_platform(self.selected_file)
+        
 
     def on_about_clicked(self) -> None:
         about_dialog = QDialog(self)
