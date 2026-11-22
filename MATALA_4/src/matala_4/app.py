@@ -111,9 +111,21 @@ class GradeAdjustmentWindow(QMainWindow):
 
 
     def on_bonus_changed(self) -> None:
-        # TODO: my code
-        pass
 
+        bonus_points = self.bonus_spin_box.value()
+        self.corrected_grades = []
+
+        for grade in self.original_grades:
+            new_grade = grade + bonus_points
+
+            if new_grade >100:
+                new_grade = 100
+
+            self.corrected_grades.append(new_grade)
+
+        self.update_table_from_lists()
+
+        
     def on_update_file_clicked(self) -> None:
         # TODO: my code
         pass
