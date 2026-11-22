@@ -1,0 +1,94 @@
+QMainWindow {
+    background-color: #fffaf3;
+}
+
+QWidget {
+    color: #293747;
+    font-family: "Segoe UI", "Arial", sans-serif;
+    font-size: 10pt;
+}
+
+QLabel#pageTitle {
+    color: #302b27;
+    font-size: 22pt;
+    font-weight: 700;
+}
+
+QLabel#pageSubtitle {
+    color: #77716b;
+    font-size: 11pt;
+}
+
+QPushButton {
+    background-color: #e47b42;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    min-height: 38px;
+    padding: 0 18px;
+}
+
+QPushButton:hover {
+    background-color: #cf6630;
+}
+
+QPushButton:pressed {
+    background-color: #b65324;
+}
+
+QPushButton#secondaryButton {
+    background-color: #f0e5d8;
+    color: #493c31;
+}
+
+QPushButton#secondaryButton:hover {
+    background-color: #e8d8c6;
+}
+
+QFrame#plotPanel {
+    background-color: white;
+    border: 1px solid #eadfd1;
+    border-radius: 12px;
+}
+
+QDialog#aboutDialog {
+    background-color: #fffaf3;
+}
+
+QLabel#aboutTitle {
+    color: #302b27;
+    font-size: 19pt;
+    font-weight: 700;
+}
+
+QLabel#aboutDescription {
+    color: #655e57;
+    font-size: 11pt;
+}
+
+QLabel#aboutAuthor {
+    color: #3b342e;
+    font-size: 11pt;
+    font-weight: 700;
+}
+
+QLabel#repositoryCaption {
+    color: #655e57;
+    font-weight: 600;
+}
+
+QLabel#repositoryUrl {
+    color: #a74d24;
+    font-weight: 600;
+}
+
+QLabel#aboutIllustration {
+    background-color: #fff3e5;
+    border: 1px solid #f1dfca;
+    border-radius: 16px;
+}
+
+QPushButton#aboutCloseButton {
+    min-width: 100px;
+}
